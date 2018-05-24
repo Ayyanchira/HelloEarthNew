@@ -14,6 +14,7 @@
 		738523AC20B49C6E00EA694D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 738523AB20B49C6E00EA694D /* Assets.xcassets */; };
 		738523AF20B49C6E00EA694D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 738523AD20B49C6E00EA694D /* LaunchScreen.storyboard */; };
 		738523E720B4A38400EA694D /* geography-class_medres.mbtiles in Resources */ = {isa = PBXBuildFile; fileRef = 738523E620B4A38400EA694D /* geography-class_medres.mbtiles */; };
+		73FB285720B6E39600B73FEC /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 73FB285620B6E39600B73FEC /* home.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		738523AE20B49C6E00EA694D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		738523B020B49C6E00EA694D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		738523E620B4A38400EA694D /* geography-class_medres.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = "geography-class_medres.mbtiles"; sourceTree = "<group>"; };
+		73FB285620B6E39600B73FEC /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		B22A7B8387C8F6A7B6BF63F8 /* Pods_HelloEarthNew.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloEarthNew.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 		738523A320B49C6D00EA694D /* HelloEarthNew */ = {
 			isa = PBXGroup;
 			children = (
+				73FB285620B6E39600B73FEC /* home.png */,
 				738523E620B4A38400EA694D /* geography-class_medres.mbtiles */,
 				738523A420B49C6D00EA694D /* AppDelegate.swift */,
 				738523A620B49C6D00EA694D /* ViewController.swift */,
@@ -153,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				738523E720B4A38400EA694D /* geography-class_medres.mbtiles in Resources */,
+				73FB285720B6E39600B73FEC /* home.png in Resources */,
 				738523AF20B49C6E00EA694D /* LaunchScreen.storyboard in Resources */,
 				738523AC20B49C6E00EA694D /* Assets.xcassets in Resources */,
 				738523AA20B49C6D00EA694D /* Main.storyboard in Resources */,
