@@ -30,6 +30,7 @@
 		738523E620B4A38400EA694D /* geography-class_medres.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = "geography-class_medres.mbtiles"; sourceTree = "<group>"; };
 		73FB285620B6E39600B73FEC /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		B22A7B8387C8F6A7B6BF63F8 /* Pods_HelloEarthNew.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloEarthNew.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE5AB0B420B8580500872992 /* trails.mbtiles */ = {isa = PBXFileReference; lastKnownFileType = file; path = trails.mbtiles; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +77,7 @@
 			children = (
 				73FB285620B6E39600B73FEC /* home.png */,
 				738523E620B4A38400EA694D /* geography-class_medres.mbtiles */,
+				CE5AB0B420B8580500872992 /* trails.mbtiles */,
 				738523A420B49C6D00EA694D /* AppDelegate.swift */,
 				738523A620B49C6D00EA694D /* ViewController.swift */,
 				738523A820B49C6D00EA694D /* Main.storyboard */,

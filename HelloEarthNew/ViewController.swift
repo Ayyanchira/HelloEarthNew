@@ -51,6 +51,7 @@ class ViewController: UIViewController, WhirlyGlobeViewControllerDelegate {
             layer.waitLoad = false
             layer.drawPriority = 0
             layer.singleLevelLoading = false
+            
             globeViewC!.add(layer)
         }
         
@@ -148,13 +149,13 @@ class ViewController: UIViewController, WhirlyGlobeViewControllerDelegate {
 //            latSecondHalfCircle.height = 0.008
 //            latLongLines.append(latSecondHalfCircle)
 //        }
-        for y in -8...8{
+        for y in stride(from: -8.5, to: 8.5, by: 0.5){
             for x in 1...36{
                 let latLongCircle = MaplyShapeGreatCircle()
                 latLongCircle.startPt = MaplyCoordinateMakeWithDegrees(Float(x*10), Float(y*10))
                 latLongCircle.endPt = MaplyCoordinateMakeWithDegrees(Float((x+1)*10),Float(y*10))
                 latLongCircle.lineWidth = 2.0
-                latLongCircle.height = 0.2
+                latLongCircle.height = 0.006
                 latLongLines.append(latLongCircle)
             }
         }
