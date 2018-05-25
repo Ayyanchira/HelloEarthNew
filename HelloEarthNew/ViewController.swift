@@ -9,14 +9,16 @@
 import UIKit
 import WhirlyGlobe
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WhirlyGlobeViewControllerDelegate {
 
     private var theViewC: MaplyBaseViewController?
     private var globeViewC: WhirlyGlobeViewController?
     private var mapViewC: MaplyViewController?
     var labels = [MaplyScreenLabel]()
     private let doGlobe = true
+    var latLongLines = [MaplyShapeGreatCircle]()
     
+    var longitudes:MaplyComponentObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,10 +63,14 @@ class ViewController: UIViewController {
             mapViewC.height = 1.0
             mapViewC.animate(toPosition: MaplyCoordinateMakeWithDegrees(-3.6704803, 40.5023056), time: 1.0)
         }
+        //WhirlyGlobeViewControllerSimpleAnimationDelegate = self
+        
         
         drawLabel()
         addspheres()
-        addcircles1()
+//        addcircles1()
+        drawLatLong()
+        //anotherCircle()
     }
 
     
@@ -74,30 +80,21 @@ class ViewController: UIViewController {
        //let simpleLine = MaplyShapeLinear(coords: cordinate3d, numCoords: 2)
     }
     
+    func globeViewController(_ viewC: WhirlyGlobeViewController!, didMove corners: UnsafeMutablePointer<MaplyCoordinate>!) {
+        print("Map moved")    }
     
     func drawLabel() {
         let labelOne = MaplyScreenLabel()
-    
         labelOne.text = "Hello"
         labelOne.color = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         labels.append(labelOne)
         labelOne.loc = MaplyCoordinate(x: 35.306938, y: -80.724113)
-        let description = [
-            kMaplyTextColor: UIColor.red,
-            kMaplyBackgroundColor: UIColor.white,
-            //kMaplyFont: UIFont(name:"Times New Roman", size: 10),
-            kMaplyLabelHeight: 2
-            ] as [String : Any]
-        //let component = globeViewC?.addLabels(labels, desc: description, mode: MaplyThreadAny)
-        //globeViewC?.addLabels([labelOne], desc: description)
         globeViewC!.addScreenLabels(labels, desc: [
             kMaplyFont: UIFont.boldSystemFont(ofSize: 18.0),
             kMaplyTextOutlineColor: UIColor.black,
             kMaplyTextOutlineSize: 2.0,
             kMaplyColor: UIColor.white
             ])
-        
-        
     }
     
     private func addspheres()
@@ -127,28 +124,88 @@ class ViewController: UIViewController {
             kMaplyColor: UIColor(red: 0.75, green: 0.0, blue: 0.0, alpha: 0.75)])
     }
     
+    func drawLatLong(){
+        drawLong()
+        drawLat()
+        longitudes = theViewC?.addShapes(latLongLines, desc: [
+            kMaplyColor : UIColor.blue])
+    }
+    
+    func drawLat(){
+//        for y in 1...36{
+//
+//            let latfirstHalfCircle = MaplyShapeGreatCircle()
+//            latfirstHalfCircle.startPt = MaplyCoordinateMakeWithDegrees(0, Float(y*10))
+//            latfirstHalfCircle.endPt = MaplyCoordinateMakeWithDegrees(179,Float(y*10))
+//            latfirstHalfCircle.lineWidth = 4.0
+//            latfirstHalfCircle.height = 0.008
+//            latLongLines.append(latfirstHalfCircle)
+//
+//            let latSecondHalfCircle = MaplyShapeGreatCircle()
+//            latSecondHalfCircle.startPt = MaplyCoordinateMakeWithDegrees(-179, Float(y*10))
+//            latSecondHalfCircle.endPt = MaplyCoordinateMakeWithDegrees(-1,Float(y*10))
+//            latSecondHalfCircle.lineWidth = 4.0
+//            latSecondHalfCircle.height = 0.008
+//            latLongLines.append(latSecondHalfCircle)
+//        }
+        for y in -8...8{
+            for x in 1...36{
+                let latLongCircle = MaplyShapeGreatCircle()
+                latLongCircle.startPt = MaplyCoordinateMakeWithDegrees(Float(x*10), Float(y*10))
+                latLongCircle.endPt = MaplyCoordinateMakeWithDegrees(Float((x+1)*10),Float(y*10))
+                latLongCircle.lineWidth = 2.0
+                latLongCircle.height = 0.2
+                latLongLines.append(latLongCircle)
+            }
+        }
+    }
+    
+    
+    func drawLong(){
+        for x in 1...36{
+            let latLongCircle = MaplyShapeGreatCircle()
+            latLongCircle.startPt = MaplyCoordinateMakeWithDegrees(Float(x*10), 85)
+            latLongCircle.endPt = MaplyCoordinateMakeWithDegrees(Float(x*10),-85)
+            latLongCircle.lineWidth = 2.0
+            latLongCircle.height = 0.006
+            latLongLines.append(latLongCircle)
+        }
+        
+    }
     
     private func addcircles1()
     {
-        let capitals = [MaplyCoordinateMakeWithDegrees(-77.036667, 38.895111),
+        let capitals = [MaplyCoordinateMakeWithDegrees(0, 80),
                         MaplyCoordinateMakeWithDegrees(120.966667, 14.583333)]
         
         
         // convert capitals into spheres. Let's do it functional!
         let line = capitals.map { capital -> MaplyShapeGreatCircle in
             let greatCircle = MaplyShapeGreatCircle()
-            greatCircle.startPt =  MaplyCoordinateMakeWithDegrees(-77.036667, 38.895111)
-            greatCircle.endPt = MaplyCoordinateMakeWithDegrees(120.966667, 14.583333)
+            greatCircle.startPt =  MaplyCoordinateMakeWithDegrees(0, 80)
+            greatCircle.endPt = MaplyCoordinateMakeWithDegrees(179, 80)
             greatCircle.lineWidth = 5.0
-            greatCircle.height = 0.00
+            greatCircle.height = 0.008
             
             // greatCircle.selectable = true;
             return greatCircle
         }
         
         self.theViewC?.addShapes(line, desc: [
-            kMaplyColor: UIColor(red: 0.75, green: 0.0, blue: 0.0, alpha: 0.75)])
+            kMaplyColor: UIColor(red: 0.75, green: 0.0, blue: 0.60, alpha: 0.50)])
         
+    }
+    
+    
+    func anotherCircle(){
+        let latCircle = MaplyShapeCircle()
+        latCircle.center = MaplyCoordinateMake(0, 0)
+        latCircle.radius = 0.5
+        latCircle.height = 0.08
+        var mapshapeArray = [MaplyShapeCircle]()
+        mapshapeArray.append(latCircle)
+        theViewC?.addShapes(mapshapeArray, desc: [
+            kMaplyColor: UIColor(red: 0.75, green: 0.0, blue: 0.60, alpha: 0.50)])
     }
     
 
